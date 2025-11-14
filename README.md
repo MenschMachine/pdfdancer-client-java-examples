@@ -103,5 +103,5 @@ pdf.save("output.pdf");
 ## Helpful Links
 
 - Maven Central: https://central.sonatype.com/artifact/com.tfc.pdf.pdfdancer.api/pdfdancer-api-client
-- PDFDancer: https://pdfdancer.com
-- Issues: https://github.com/theflyingcodr/pdfdancer
+- PDFDancer: https://www.pdfdancer.com
+- Issues: https://github.com/MenschMachine/pdfdancer
