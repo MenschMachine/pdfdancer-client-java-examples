@@ -1,0 +1,58 @@
+package com.tfc.pdf.pdfdancer.examples.workingwithtext;
+
+import com.pdfdancer.client.rest.PDFDancer;
+import com.pdfdancer.client.rest.TextParagraphReference;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Working with Text 02 — Redact paragraphs containing forbidden phrases.
+ */
+public final class RedactPhrases {
+    private static final String SHOWCASE_PATH = "src/main/resources/Showcase.pdf";
+    private static final String OUTPUT_PATH = "output/working-with-text/redacted.pdf";
+    private static final String[] TARGET_PHRASES = {"replaced", "pdfdancer.com"};
+
+    public static void main(String[] args) {
+        runExample(new File(SHOWCASE_PATH), OUTPUT_PATH, TARGET_PHRASES);
+    }
+
+    public static void runExample(File pdfPath, String outputPath, String[] phrases) {
+        if (!pdfPath.exists()) {
+            throw new IllegalArgumentException("PDF file not found: " + pdfPath);
+        }
+
+        String[] loweredPhrases = new String[phrases.length];
+        for (int i = 0; i < phrases.length; i++) {
+            loweredPhrases[i] = phrases[i].toLowerCase();
+        }
+
+        PDFDancer pdf = PDFDancer.createSession(pdfPath);
+        List<TextParagraphReference> matches = new ArrayList<>();
+        for (TextParagraphReference paragraph : pdf.selectParagraphs()) {
+            String text = paragraph.getText();
+            if (text != null) {
+                String lowerText = text.toLowerCase();
+                for (String phrase : loweredPhrases) {
+                    if (lowerText.contains(phrase)) {
+                        matches.add(paragraph);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (matches.isEmpty()) {
+            throw new IllegalStateException("No matching paragraphs found to redact.");
+        }
+
+        for (TextParagraphReference paragraph : matches) {
+            paragraph.delete();
+        }
+
+        pdf.save(outputPath);
+        System.out.println("Deleted " + matches.size() + " paragraphs. Saved to " + outputPath + ".");
+    }
+}
