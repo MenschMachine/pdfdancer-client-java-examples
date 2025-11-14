@@ -102,6 +102,7 @@ pdf.save("output.pdf");
 
 ## Helpful Links
 
+- API Docs: https://docs.pdfdancer.com
 - Maven Central: https://central.sonatype.com/artifact/com.tfc.pdf.pdfdancer.api/pdfdancer-api-client
 - PDFDancer: https://www.pdfdancer.com
 - Issues: https://github.com/MenschMachine/pdfdancer
