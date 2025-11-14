@@ -11,12 +11,16 @@ public final class UploadLargeFile {
     private static final String LARGE_PDF_PATH = "src/main/resources/ISO 32000-2 FDIS.pdf";
     private static final String OUTPUT_PATH = "large-file.pdf";
     private static final int TIMEOUT_SECONDS = 120;
+    private static final boolean skip = true;
 
     public static void main(String[] args) {
         runExample();
     }
 
     public static void runExample() {
+        if (skip) {
+            return;
+        }
         File pdfPath = new File(LARGE_PDF_PATH);
         if (!pdfPath.exists()) {
             throw new IllegalArgumentException("PDF file not found: " + pdfPath);
