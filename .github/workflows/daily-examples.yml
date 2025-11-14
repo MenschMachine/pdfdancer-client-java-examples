@@ -34,44 +34,5 @@ jobs:
       - name: Build project
         run: ./gradlew build
 
-      - name: Run Quickstart Examples
-        run: ./gradlew runQuickstartExamples
-        continue-on-error: true
-
-      - name: Run Simple Examples
-        run: ./gradlew runSimpleExamples
-        continue-on-error: true
-
-      - name: Run Forms Examples
-        run: ./gradlew runFormsExamples
-        continue-on-error: true
-
-      - name: Run Pages Examples
-        run: ./gradlew runPagesExamples
-        continue-on-error: true
-
-      - name: Run Text Examples
-        run: ./gradlew runTextExamples
-        continue-on-error: true
-
-      - name: Run Images Examples
-        run: ./gradlew runImagesExamples
-        continue-on-error: true
-
-      - name: Run Misc Examples
-        run: ./gradlew runMiscExamples
-        continue-on-error: true
-
-      - name: Upload output artifacts
-        if: always() && matrix.java-version == '21'
-        uses: actions/upload-artifact@v4
-        with:
-          name: example-outputs-java-${{ matrix.java-version }}
-          path: output/**/*.pdf
-          retention-days: 7
-
-      - name: Check for failures
-        if: failure()
-        run: |
-          echo "Some examples failed. Check the logs above for details."
-          exit 1
+      - name: Run All Examples
+        run: ./gradlew runAllExamples
