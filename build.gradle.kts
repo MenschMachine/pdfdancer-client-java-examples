@@ -118,14 +118,13 @@ tasks.register("runImagesExamples") {
 // Master task to run all examples
 tasks.register("runAllExamples") {
     group = "examples"
-    description = "Run ALL examples (quickstart, simple, forms, pages, text, images, misc)"
+    description = "Run ALL examples (quickstart, simple, forms, pages, text, images)"
     dependsOn(
         "runQuickstartExamples",
         "runSimpleExamples",
         "runFormsExamples",
         "runPagesExamples",
         "runTextExamples",
-        "runImagesExamples",
-        "runMiscExamples"
+        "runImagesExamples"
     )
 }
