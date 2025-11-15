@@ -1,4 +1,4 @@
-package com.tfc.pdf.pdfdancer.examples.workingwithimages;
+package com.tfc.pdf.pdfdancer.examples.images;
 
 import com.pdfdancer.client.rest.PDFDancer;
 import com.pdfdancer.client.rest.ImageReference;

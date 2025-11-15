@@ -1,4 +1,4 @@
-package com.tfc.pdf.pdfdancer.examples.workingwithtext;
+package com.tfc.pdf.pdfdancer.examples.text;
 
 import com.pdfdancer.client.rest.PDFDancer;
 import com.pdfdancer.client.rest.TextParagraphReference;
@@ -7,12 +7,12 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Working with Text 01 — Replace the first matching paragraph.
+ * Working with Text 04 — Move a paragraph to new coordinates.
  */
-public final class FindAndReplace {
+public final class MoveText {
     private static final String SHOWCASE_PATH = "src/main/resources/Showcase.pdf";
-    private static final String OUTPUT_PATH = "output/working-with-text/find_and_replace.pdf";
-    private static final String PARAGRAPH_PREFIX = "This line will be replaced";
+    private static final String OUTPUT_PATH = "output/working-with-text/moved_text.pdf";
+    private static final String PARAGRAPH_PREFIX = "This is regular";
 
     public static void main(String[] args) {
         runExample(new File(SHOWCASE_PATH), OUTPUT_PATH, PARAGRAPH_PREFIX);
@@ -26,16 +26,13 @@ public final class FindAndReplace {
         PDFDancer pdf = PDFDancer.createSession(pdfPath);
         List<TextParagraphReference> matches = pdf.page(0).selectParagraphsStartingWith(paragraphPrefix);
         if (matches.isEmpty()) {
-            throw new IllegalStateException("No paragraphs found starting with '" + paragraphPrefix + "'.");
+            throw new IllegalStateException("No paragraph found starting with '" + paragraphPrefix + "'.");
         }
 
-        matches.get(0).edit()
-            .replace("This line was replaced!\nUpdated with PDFDancer")
-            .font("Helvetica", 12.0)
-            .lineSpacing(1.1)
-            .apply();
+        System.out.println(matches.get(0).getText());
+        matches.get(0).edit().moveTo(50, 750).apply();
 
         pdf.save(outputPath);
-        System.out.println("Saved updated PDF to " + outputPath);
+        System.out.println("Moved paragraph to (50,750) and saved to " + outputPath + ".");
     }
 }

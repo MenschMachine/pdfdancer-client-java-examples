@@ -1,4 +1,4 @@
-package com.tfc.pdf.pdfdancer.examples.workingwithpages;
+package com.tfc.pdf.pdfdancer.examples.pages;
 
 import com.pdfdancer.client.rest.PDFDancer;
 

@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.pdfdancer.client:pdfdancer-client-java:0.1.3")
+    implementation("com.pdfdancer.client:pdfdancer-client-java:0.1.4")
     runtimeOnly("ch.qos.logback:logback-classic:1.5.13")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
 }
@@ -59,26 +59,23 @@ createExampleTask("runCheckBoxes", "com.tfc.pdf.pdfdancer.examples.forms.CheckBo
 createExampleTask("runClearFields", "com.tfc.pdf.pdfdancer.examples.forms.ClearFields", "Run ClearFields example")
 
 // Working with pages examples
-createExampleTask("runReorderPages", "com.tfc.pdf.pdfdancer.examples.workingwithpages.ReorderPages", "Run ReorderPages example")
-createExampleTask("runExtractPages", "com.tfc.pdf.pdfdancer.examples.workingwithpages.ExtractPages", "Run ExtractPages example")
-createExampleTask("runDeletePages", "com.tfc.pdf.pdfdancer.examples.workingwithpages.DeletePages", "Run DeletePages example")
-createExampleTask("runAddBlankPage", "com.tfc.pdf.pdfdancer.examples.workingwithpages.AddBlankPage", "Run AddBlankPage example")
+createExampleTask("runReorderPages", "com.tfc.pdf.pdfdancer.examples.pages.ReorderPages", "Run ReorderPages example")
+createExampleTask("runExtractPages", "com.tfc.pdf.pdfdancer.examples.pages.ExtractPages", "Run ExtractPages example")
+createExampleTask("runDeletePages", "com.tfc.pdf.pdfdancer.examples.pages.DeletePages", "Run DeletePages example")
+createExampleTask("runAddBlankPage", "com.tfc.pdf.pdfdancer.examples.pages.AddBlankPage", "Run AddBlankPage example")
 
 // Working with text examples
-createExampleTask("runFindAndReplace", "com.tfc.pdf.pdfdancer.examples.workingwithtext.FindAndReplace", "Run FindAndReplace example")
-createExampleTask("runRedactPhrases", "com.tfc.pdf.pdfdancer.examples.workingwithtext.RedactPhrases", "Run RedactPhrases example")
-createExampleTask("runHighlightMatches", "com.tfc.pdf.pdfdancer.examples.workingwithtext.HighlightMatches", "Run HighlightMatches example")
-createExampleTask("runMoveText", "com.tfc.pdf.pdfdancer.examples.workingwithtext.MoveText", "Run MoveText example")
-createExampleTask("runChangeFont", "com.tfc.pdf.pdfdancer.examples.workingwithtext.ChangeFont", "Run ChangeFont example")
-createExampleTask("runAddWatermark", "com.tfc.pdf.pdfdancer.examples.workingwithtext.AddWatermark", "Run AddWatermark example")
+createExampleTask("runFindAndReplace", "com.tfc.pdf.pdfdancer.examples.text.FindAndReplace", "Run FindAndReplace example")
+createExampleTask("runRedactPhrases", "com.tfc.pdf.pdfdancer.examples.text.RedactPhrases", "Run RedactPhrases example")
+createExampleTask("runHighlightMatches", "com.tfc.pdf.pdfdancer.examples.text.HighlightMatches", "Run HighlightMatches example")
+createExampleTask("runMoveText", "com.tfc.pdf.pdfdancer.examples.text.MoveText", "Run MoveText example")
+createExampleTask("runChangeFont", "com.tfc.pdf.pdfdancer.examples.text.ChangeFont", "Run ChangeFont example")
+createExampleTask("runAddWatermark", "com.tfc.pdf.pdfdancer.examples.text.AddWatermark", "Run AddWatermark example")
 
 // Working with images examples
-createExampleTask("runListImages", "com.tfc.pdf.pdfdancer.examples.workingwithimages.ListImages", "Run ListImages example")
-createExampleTask("runMoveImage", "com.tfc.pdf.pdfdancer.examples.workingwithimages.MoveImage", "Run MoveImage example")
-createExampleTask("runDeleteImages", "com.tfc.pdf.pdfdancer.examples.workingwithimages.DeleteImages", "Run DeleteImages example")
-
-// Misc examples
-createExampleTask("runUploadLargeFile", "com.tfc.pdf.pdfdancer.examples.misc.UploadLargeFile", "Run UploadLargeFile example")
+createExampleTask("runListImages", "com.tfc.pdf.pdfdancer.examples.images.ListImages", "Run ListImages example")
+createExampleTask("runMoveImage", "com.tfc.pdf.pdfdancer.examples.images.MoveImage", "Run MoveImage example")
+createExampleTask("runDeleteImages", "com.tfc.pdf.pdfdancer.examples.images.DeleteImages", "Run DeleteImages example")
 
 // Grouped tasks
 tasks.register("runQuickstartExamples") {
@@ -116,12 +113,6 @@ tasks.register("runImagesExamples") {
     group = "examples"
     description = "Run all working with images examples"
     dependsOn("runListImages", "runMoveImage", "runDeleteImages")
-}
-
-tasks.register("runMiscExamples") {
-    group = "examples"
-    description = "Run all misc examples"
-    dependsOn("runUploadLargeFile")
 }
 
 // Master task to run all examples

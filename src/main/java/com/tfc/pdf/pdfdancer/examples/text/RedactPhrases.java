@@ -1,4 +1,4 @@
-package com.tfc.pdf.pdfdancer.examples.workingwithtext;
+package com.tfc.pdf.pdfdancer.examples.text;
 
 import com.pdfdancer.client.rest.PDFDancer;
 import com.pdfdancer.client.rest.TextParagraphReference;

@@ -66,12 +66,6 @@ You can run examples individually, by category, or all at once using Gradle task
 - MoveImage - Move images to new coordinates
 - DeleteImages - Remove images from pages
 
-#### Misc Examples
-```bash
-./gradlew runMiscExamples
-```
-- UploadLargeFile - Upload and download large PDFs with timeout handling
-
 ### Run Individual Examples
 
 You can also run specific examples:

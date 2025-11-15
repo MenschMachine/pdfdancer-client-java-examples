@@ -1,4 +1,4 @@
-package com.tfc.pdf.pdfdancer.examples.workingwithtext;
+package com.tfc.pdf.pdfdancer.examples.text;
 
 import com.pdfdancer.client.rest.PDFDancer;
 import com.pdfdancer.client.rest.TextParagraphReference;
@@ -28,7 +28,9 @@ public final class HighlightMatches {
         PDFDancer pdf = PDFDancer.createSession(pdfPath);
         List<TextParagraphReference> matches = pdf.page(0).selectParagraphsMatching(pattern);
         if (matches.isEmpty()) {
-            throw new IllegalStateException("No paragraphs matched pattern: " + pattern);
+            System.out.println("No paragraphs matched pattern: " + pattern + ". Skipping highlighting.");
+            pdf.save(outputPath);
+            return;
         }
 
         for (TextParagraphReference paragraph : matches) {
