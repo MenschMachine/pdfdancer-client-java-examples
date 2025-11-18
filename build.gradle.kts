@@ -38,8 +38,8 @@ fun createExampleTask(taskName: String, mainClassName: String, description: Stri
         mainClass.set(mainClassName)
         standardOutput = System.out
         errorOutput = System.err
-        // Ignore exit value to allow other tasks to continue
-        isIgnoreExitValue = true
+        // Fail the build if the example fails
+        isIgnoreExitValue = false
     }
 }
 
