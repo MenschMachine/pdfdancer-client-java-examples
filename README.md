@@ -8,7 +8,7 @@ Edit text in real-world PDFs — even ones you didn't create — from Java. This
 
 ## Prerequisites
 
-- Java 21+
+- Java 11+
 - A PDFDancer API token (`PDFDANCER_TOKEN`)
 - Gradle (or use the included Gradle wrapper)
 
