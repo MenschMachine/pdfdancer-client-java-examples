@@ -104,8 +104,8 @@ All examples save their output PDFs to the `output/` directory, organized by cat
 
 You can optionally set these environment variables:
 
-- `PDFDANCER_TOKEN` - Your API token for authenticated requests
-- `PDFDANCER_BASE_URL` - Custom API endpoint (for self-hosted instances)
+- `PDFDANCER_API_TOKEN` - Your API token for authenticated requests
+- `PDFDANCER_BASE_URL` - Custom API endpoint (defaults to https://api.pdfdancer.com)
 
 ## Example Code Structure
 
@@ -130,9 +130,10 @@ This repository includes an automated workflow (`.github/workflows/daily-example
 
 - Runs all examples daily at 2 AM UTC
 - Can be manually triggered from GitHub Actions tab
-- Tests on Java 11, 17, and 21 to ensure compatibility
+- Tests on Java 11, 17, 21, and 25 to ensure compatibility
 - Tests all example categories independently
 - Uploads generated PDFs as artifacts (retained for 7 days, Java 21 only)
-- Uses anonymous PDFDancer tokens by default (or `PDFDANCER_TOKEN` secret if configured)
+- Uses anonymous PDFDancer tokens by default (or `PDFDANCER_API_TOKEN` secret if configured)
+- Points to staging API via `PDFDANCER_BASE_URL=https://api-staging.pdfdancer.com`
 
 The workflow can be triggered manually from the GitHub Actions tab for immediate testing.

@@ -10,7 +10,7 @@ import java.util.List;
  * Minimal example showing how to bootstrap the PDFDancer client from a standalone project.
  *
  * NOTE: No API token needed! SDK automatically gets an anonymous token.
- * For production use, set PDFDANCER_TOKEN environment variable.
+ * For production use, set PDFDANCER_API_TOKEN environment variable.
  */
 public final class ExampleApp {
     private ExampleApp() {}

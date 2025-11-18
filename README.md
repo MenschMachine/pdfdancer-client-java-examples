@@ -9,14 +9,14 @@ Edit text in real-world PDFs — even ones you didn't create — from Java. This
 ## Prerequisites
 
 - Java 11+
-- A PDFDancer API token (`PDFDANCER_TOKEN`)
+- A PDFDancer API token (`PDFDANCER_API_TOKEN`)
 - Gradle (or use the included Gradle wrapper)
 
 ## Getting Started
 
 ```bash
 # Set your API token
-export PDFDANCER_TOKEN=your-token-here
+export PDFDANCER_API_TOKEN=your-token-here
 
 # Build the project (defaults to Java 11 toolchain)
 ./gradlew build
@@ -59,7 +59,7 @@ java -cp build/libs/* com.tfc.pdf.pdfdancer.examples.simple.MovePage \
 ## Running from Your IDE
 
 1. Open the project in IntelliJ IDEA or your preferred IDE
-2. Set the `PDFDANCER_TOKEN` environment variable in your run configuration
+2. Set the `PDFDANCER_API_TOKEN` environment variable in your run configuration
 3. Run any of the example classes directly
 
 ## Adding PDFDancer to Your Project
@@ -89,7 +89,7 @@ import com.tfc.pdf.pdfdancer.api.client.rest.PDFDancer;
 import java.io.File;
 
 // 1. Get your API token
-String token = System.getenv("PDFDANCER_TOKEN");
+String token = System.getenv("PDFDANCER_API_TOKEN");
 
 // 2. Open a PDF
 PDFDancer pdf = PDFDancer.createSession(token, new File("document.pdf"));
