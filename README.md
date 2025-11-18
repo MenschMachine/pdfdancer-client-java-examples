@@ -18,7 +18,11 @@ Edit text in real-world PDFs — even ones you didn't create — from Java. This
 # Set your API token
 export PDFDANCER_TOKEN=your-token-here
 
-# Build the project
+# Build the project (defaults to Java 11 toolchain)
+./gradlew build
+
+# Or specify a Java version
+export JAVA_VERSION=17
 ./gradlew build
 
 # Run an example
