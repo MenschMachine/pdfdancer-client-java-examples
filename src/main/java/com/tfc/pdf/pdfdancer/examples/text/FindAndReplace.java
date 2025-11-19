@@ -1,7 +1,7 @@
 package com.tfc.pdf.pdfdancer.examples.text;
 
 import com.pdfdancer.client.rest.PDFDancer;
-import com.pdfdancer.client.rest.TextParagraphReference;
+import com.pdfdancer.client.rest.TextLineReference;
 
 import java.io.File;
 import java.util.List;
@@ -24,16 +24,15 @@ public final class FindAndReplace {
         }
 
         PDFDancer pdf = PDFDancer.createSession(pdfPath);
-        List<TextParagraphReference> matches = pdf.page(0).selectParagraphsStartingWith(paragraphPrefix);
+        List<TextLineReference> matches = pdf.page(0).selectTextLinesMatching(".*" + paragraphPrefix + ".*");
         if (matches.isEmpty()) {
-            throw new IllegalStateException("No paragraphs found starting with '" + paragraphPrefix + "'.");
+            throw new IllegalStateException("No line found matching '" + paragraphPrefix + "'.");
         }
 
         matches.get(0).edit()
-            .replace("This line was replaced!\nUpdated with PDFDancer")
-            .font("Helvetica", 12.0)
-            .lineSpacing(1.1)
-            .apply();
+                .replace("This line was replaced!")
+                .font("Helvetica", 12.0)
+                .apply();
 
         pdf.save(outputPath);
         System.out.println("Saved updated PDF to " + outputPath);
