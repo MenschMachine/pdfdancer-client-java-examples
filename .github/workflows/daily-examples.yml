@@ -9,39 +9,59 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-examples:
-    name: Run Examples (Java ${{ matrix.java-version }} on ${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
+  select-random:
+    name: Select Random Test Combination
+    runs-on: ubuntu-latest
+    outputs:
+      java-version: ${{ steps.random.outputs.java-version }}
+      os: ${{ steps.random.outputs.os }}
+    steps:
+      - name: Select random combination
+        id: random
+        run: |
+          # All possible Java versions
+          JAVA_VERSIONS=("11" "17" "21" "25")
+          # All possible OS (macos-latest removed per remote changes)
+          OS_OPTIONS=("ubuntu-latest" "windows-latest")
 
-    strategy:
-      fail-fast: false
-      max-parallel: 1
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-        java-version: ['11', '17', '21', '25']
+          # Select random Java version
+          RANDOM_JAVA=${JAVA_VERSIONS[$RANDOM % ${#JAVA_VERSIONS[@]}]}
+
+          # Select random OS
+          RANDOM_OS=${OS_OPTIONS[$RANDOM % ${#OS_OPTIONS[@]}]}
+
+          echo "java-version=$RANDOM_JAVA" >> $GITHUB_OUTPUT
+          echo "os=$RANDOM_OS" >> $GITHUB_OUTPUT
+
+          echo "Selected: Java $RANDOM_JAVA on $RANDOM_OS"
+
+  test-examples:
+    name: Run Examples (Java ${{ needs.select-random.outputs.java-version }} on ${{ needs.select-random.outputs.os }})
+    runs-on: ${{ needs.select-random.outputs.os }}
+    needs: select-random
 
     env:
       PDFDANCER_BASE_URL: https://api-staging.pdfdancer.com
-      JAVA_VERSION: ${{ matrix.java-version }}
+      JAVA_VERSION: ${{ needs.select-random.outputs.java-version }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Java ${{ matrix.java-version }}
+      - name: Set up Java ${{ needs.select-random.outputs.java-version }}
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: ${{ matrix.java-version }}
+          java-version: ${{ needs.select-random.outputs.java-version }}
           cache: 'gradle'
 
       - name: Set Gradle version based on Java version
         id: gradle-version
         shell: bash
         run: |
-          if [ "${{ matrix.java-version }}" = "11" ]; then
+          if [ "${{ needs.select-random.outputs.java-version }}" = "11" ]; then
             echo "version=8.5" >> $GITHUB_OUTPUT
-          elif [ "${{ matrix.java-version }}" = "25" ]; then
+          elif [ "${{ needs.select-random.outputs.java-version }}" = "25" ]; then
             echo "version=9.2.1" >> $GITHUB_OUTPUT
           else
             echo "version=8.10.2" >> $GITHUB_OUTPUT
