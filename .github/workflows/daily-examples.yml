@@ -28,7 +28,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Java ${{ matrix.java-version }}
+      - name: Set up Java 17 (to run Gradle)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Java ${{ matrix.java-version }} (target version)
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
