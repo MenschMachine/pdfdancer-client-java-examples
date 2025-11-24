@@ -41,7 +41,7 @@ jobs:
     needs: select-random
 
     env:
-      PDFDANCER_BASE_URL: https://api-staging.pdfdancer.com
+      PDFDANCER_BASE_URL: https://api.pdfdancer.com
       JAVA_VERSION: ${{ needs.select-random.outputs.java-version }}
 
     steps:
