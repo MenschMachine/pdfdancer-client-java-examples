@@ -53,7 +53,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: ${{ needs.select-random.outputs.java-version }}
-          cache: 'gradle'
 
       - name: Set Gradle version based on Java version
         id: gradle-version
@@ -66,6 +65,17 @@ jobs:
           else
             echo "version=8.10.2" >> $GITHUB_OUTPUT
           fi
+
+      - name: Cache Gradle wrapper and dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ steps.gradle-version.outputs.version }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-${{ steps.gradle-version.outputs.version }}-
+            ${{ runner.os }}-gradle-
 
       - name: Download and set up Gradle
         shell: bash
