@@ -26,7 +26,7 @@ public final class HighlightMatches {
         }
 
         PDFDancer pdf = PDFDancer.createSession(pdfPath);
-        List<TextParagraphReference> matches = pdf.page(0).selectParagraphsMatching(pattern);
+        List<TextParagraphReference> matches = pdf.page(1).selectParagraphsMatching(pattern);
         if (matches.isEmpty()) {
             System.out.println("No paragraphs matched pattern: " + pattern + ". Skipping highlighting.");
             pdf.save(outputPath);

@@ -24,7 +24,7 @@ public final class FindAndReplace {
         }
 
         PDFDancer pdf = PDFDancer.createSession(pdfPath);
-        List<TextLineReference> matches = pdf.page(0).selectTextLinesMatching(".*" + paragraphPrefix + ".*");
+        List<TextLineReference> matches = pdf.page(1).selectTextLinesMatching(".*" + paragraphPrefix + ".*");
         if (matches.isEmpty()) {
             throw new IllegalStateException("No line found matching '" + paragraphPrefix + "'.");
         }

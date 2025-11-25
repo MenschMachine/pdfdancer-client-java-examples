@@ -24,11 +24,11 @@ public final class MovePage {
 
         PDFDancer pdf = PDFDancer.createSession(inputPdf);
 
-        // Move page 0 to position 2
-        pdf.movePage(0, 2);
+        // Move page 1 to position 2
+        pdf.movePage(1, 2);
         pdf.save(outputPath);
 
-        System.out.println("Moved page 0 to position 2");
+        System.out.println("Moved page 1 to position 3");
         System.out.println("Saved to: " + outputPath);
     }
 }

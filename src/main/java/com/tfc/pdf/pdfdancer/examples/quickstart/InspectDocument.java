@@ -40,12 +40,12 @@ public final class InspectDocument {
 
         System.out.println("\nFirst Page Details");
         System.out.println("------------------");
-        System.out.println("Page index: 0");
-        System.out.println("Paragraphs on page: " + pdf.page(0).selectParagraphs().size());
-        System.out.println("Images on page: " + pdf.page(0).selectImages().size());
-        System.out.println("Form fields on page: " + pdf.page(0).selectFormFields().size());
+        System.out.println("Page number: 1");
+        System.out.println("Paragraphs on page: " + pdf.page(1).selectParagraphs().size());
+        System.out.println("Images on page: " + pdf.page(1).selectImages().size());
+        System.out.println("Form fields on page: " + pdf.page(1).selectFormFields().size());
 
-        List<TextParagraphReference> sample = pdf.page(0).selectParagraphs();
+        List<TextParagraphReference> sample = pdf.page(1).selectParagraphs();
         int limit = Math.min(5, sample.size());
         if (sample.isEmpty()) {
             System.out.println("\nNo paragraphs found on the first page.");

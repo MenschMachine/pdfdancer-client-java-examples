@@ -49,7 +49,7 @@ public final class ListImages {
             } else {
                 coords = "(unknown coordinates)";
             }
-            System.out.println("- Page " + position.getPageIndex() + ": " + coords + " — " + size);
+            System.out.println("- Page " + position.getPageNumber() + ": " + coords + " — " + size);
         }
     }
 }

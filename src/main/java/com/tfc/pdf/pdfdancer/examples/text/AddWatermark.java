@@ -33,11 +33,11 @@ public final class AddWatermark {
         List<PageRef> pages = pdf.getPages();
         for (int i = 0; i < pages.size(); i++) {
             pdf.newParagraph()
-                .text(WATERMARK_TEXT)
-                .font(WATERMARK_FONT, WATERMARK_SIZE)
-                .color(WATERMARK_COLOR)
-                .at(i, WATERMARK_X, WATERMARK_Y)
-                .add();
+                    .text(WATERMARK_TEXT)
+                    .font(WATERMARK_FONT, WATERMARK_SIZE)
+                    .color(WATERMARK_COLOR)
+                    .at(i + 1, WATERMARK_X, WATERMARK_Y)
+                    .add();
         }
 
         pdf.save(outputPath);

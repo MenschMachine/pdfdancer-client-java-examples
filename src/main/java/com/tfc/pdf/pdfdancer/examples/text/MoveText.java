@@ -24,7 +24,7 @@ public final class MoveText {
         }
 
         PDFDancer pdf = PDFDancer.createSession(pdfPath);
-        List<TextParagraphReference> matches = pdf.page(0).selectParagraphsStartingWith(paragraphPrefix);
+        List<TextParagraphReference> matches = pdf.page(1).selectParagraphsStartingWith(paragraphPrefix);
         if (matches.isEmpty()) {
             throw new IllegalStateException("No paragraph found starting with '" + paragraphPrefix + "'.");
         }

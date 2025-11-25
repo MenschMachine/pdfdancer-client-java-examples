@@ -25,7 +25,7 @@ public final class MoveImage {
         }
 
         PDFDancer pdf = PDFDancer.createSession(pdfPath);
-        List<ImageReference> images = pdf.page(0).selectImages();
+        List<ImageReference> images = pdf.page(1).selectImages();
         if (images.isEmpty()) {
             throw new IllegalStateException("No images found on page 0 to move.");
         }

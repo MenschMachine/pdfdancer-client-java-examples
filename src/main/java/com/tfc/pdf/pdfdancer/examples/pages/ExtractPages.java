@@ -29,12 +29,12 @@ public final class ExtractPages {
         int totalPages = pdf.getPages().size();
         if (pagesToKeep > totalPages) {
             throw new IllegalArgumentException(
-                "Document only has " + totalPages + " pages; cannot keep " + pagesToKeep + "."
+                    "Document only has " + totalPages + " pages; cannot keep " + pagesToKeep + "."
             );
         }
 
         for (int index = totalPages - 1; index >= pagesToKeep; index--) {
-            pdf.page(index).delete();
+            pdf.page(index + 1).delete();
         }
 
         pdf.save(outputPath);
