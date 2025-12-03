@@ -75,6 +75,7 @@ createExampleTask("runHighlightMatches", "com.tfc.pdf.pdfdancer.examples.text.Hi
 createExampleTask("runMoveText", "com.tfc.pdf.pdfdancer.examples.text.MoveText", "Run MoveText example")
 createExampleTask("runChangeFont", "com.tfc.pdf.pdfdancer.examples.text.ChangeFont", "Run ChangeFont example")
 createExampleTask("runAddWatermark", "com.tfc.pdf.pdfdancer.examples.text.AddWatermark", "Run AddWatermark example")
+createExampleTask("runRedactTextAndImage", "com.tfc.pdf.pdfdancer.examples.text.RedactTextAndImage", "Run RedactTextAndImage example")
 
 // Working with images examples
 createExampleTask("runListImages", "com.tfc.pdf.pdfdancer.examples.images.ListImages", "Run ListImages example")
@@ -110,7 +111,7 @@ tasks.register("runTextExamples") {
     group = "examples"
     description = "Run all working with text examples"
     dependsOn("runFindAndReplace", "runRedactPhrases", "runHighlightMatches",
-              "runMoveText", "runChangeFont", "runAddWatermark")
+              "runMoveText", "runChangeFont", "runAddWatermark", "runRedactTextAndImage")
 }
 
 tasks.register("runImagesExamples") {
