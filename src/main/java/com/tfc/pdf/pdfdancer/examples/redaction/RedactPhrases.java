@@ -49,10 +49,10 @@ public final class RedactPhrases {
         }
 
         for (TextParagraphReference paragraph : matches) {
-            paragraph.delete();
+            paragraph.redact().withReplacement("[REDACTED]").apply();
         }
 
         pdf.save(outputPath);
-        System.out.println("Deleted " + matches.size() + " paragraphs. Saved to " + outputPath + ".");
+        System.out.println("Redacted " + matches.size() + " paragraphs. Saved to " + outputPath + ".");
     }
 }
