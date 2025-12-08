@@ -34,7 +34,7 @@ public final class RedactByPattern {
         for (TextParagraphReference paragraph : paragraphs) {
             String text = paragraph.getText();
             if (text != null && pattern.matcher(text).find()) {
-                paragraph.redact().withReplacement("[REDACTED]").apply();
+                paragraph.redact("[REDACTED]");
                 redactedCount++;
             }
         }

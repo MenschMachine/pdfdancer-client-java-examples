@@ -38,7 +38,7 @@ public final class RedactImages {
 
         int redactedCount = 0;
         for (ImageReference image : images) {
-            image.redact().withColor(Color.BLACK).apply();
+            image.redact(Color.BLACK);
             redactedCount++;
         }
 

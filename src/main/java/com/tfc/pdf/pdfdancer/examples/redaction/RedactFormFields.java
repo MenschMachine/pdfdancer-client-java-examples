@@ -29,7 +29,7 @@ public final class RedactFormFields {
         for (String fieldName : fieldNames) {
             List<FormFieldReference> fields = pdf.selectFormFieldsByName(fieldName);
             for (FormFieldReference field : fields) {
-                field.redact().withReplacement("[REMOVED]").apply();
+                field.redact("[REMOVED]");
                 redactedCount++;
             }
         }

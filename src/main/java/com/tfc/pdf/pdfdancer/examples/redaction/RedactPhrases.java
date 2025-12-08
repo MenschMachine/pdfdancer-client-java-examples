@@ -49,7 +49,7 @@ public final class RedactPhrases {
         }
 
         for (TextParagraphReference paragraph : matches) {
-            paragraph.redact().withReplacement("[REDACTED]").apply();
+            paragraph.redact("[REDACTED]");
         }
 
         pdf.save(outputPath);

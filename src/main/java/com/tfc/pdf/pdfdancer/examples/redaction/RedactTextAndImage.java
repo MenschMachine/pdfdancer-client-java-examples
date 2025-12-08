@@ -52,7 +52,7 @@ public final class RedactTextAndImage {
         // Redact matching paragraphs
         int redactedTextCount = 0;
         for (TextParagraphReference paragraph : matchingParagraphs) {
-            paragraph.redact().apply();
+            paragraph.redact();
             redactedTextCount++;
         }
 
@@ -61,7 +61,7 @@ public final class RedactTextAndImage {
         if (imagePageNumber <= pdf.getPages().size()) {
             List<ImageReference> images = pdf.page(imagePageNumber).selectImages();
             if (!images.isEmpty()) {
-                images.get(0).redact().withColor(Color.BLACK).apply();
+                images.get(0).redact(Color.BLACK);
                 redactedImageCount++;
                 System.out.println("Images redacted on page " + imagePageNumber);
             }
