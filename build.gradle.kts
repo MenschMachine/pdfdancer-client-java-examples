@@ -70,12 +70,17 @@ createExampleTask("runAddBlankPage", "com.tfc.pdf.pdfdancer.examples.pages.AddBl
 
 // Working with text examples
 createExampleTask("runFindAndReplace", "com.tfc.pdf.pdfdancer.examples.text.FindAndReplace", "Run FindAndReplace example")
-createExampleTask("runRedactPhrases", "com.tfc.pdf.pdfdancer.examples.text.RedactPhrases", "Run RedactPhrases example")
 createExampleTask("runHighlightMatches", "com.tfc.pdf.pdfdancer.examples.text.HighlightMatches", "Run HighlightMatches example")
 createExampleTask("runMoveText", "com.tfc.pdf.pdfdancer.examples.text.MoveText", "Run MoveText example")
 createExampleTask("runChangeFont", "com.tfc.pdf.pdfdancer.examples.text.ChangeFont", "Run ChangeFont example")
 createExampleTask("runAddWatermark", "com.tfc.pdf.pdfdancer.examples.text.AddWatermark", "Run AddWatermark example")
-createExampleTask("runRedactTextAndImage", "com.tfc.pdf.pdfdancer.examples.text.RedactTextAndImage", "Run RedactTextAndImage example")
+
+// Redaction examples
+createExampleTask("runRedactPhrases", "com.tfc.pdf.pdfdancer.examples.redaction.RedactPhrases", "Run RedactPhrases example")
+createExampleTask("runRedactTextAndImage", "com.tfc.pdf.pdfdancer.examples.redaction.RedactTextAndImage", "Run RedactTextAndImage example")
+createExampleTask("runRedactImages", "com.tfc.pdf.pdfdancer.examples.redaction.RedactImages", "Run RedactImages example")
+createExampleTask("runRedactByPattern", "com.tfc.pdf.pdfdancer.examples.redaction.RedactByPattern", "Run RedactByPattern example")
+createExampleTask("runRedactFormFields", "com.tfc.pdf.pdfdancer.examples.redaction.RedactFormFields", "Run RedactFormFields example")
 
 // Working with images examples
 createExampleTask("runListImages", "com.tfc.pdf.pdfdancer.examples.images.ListImages", "Run ListImages example")
@@ -110,8 +115,15 @@ tasks.register("runPagesExamples") {
 tasks.register("runTextExamples") {
     group = "examples"
     description = "Run all working with text examples"
-    dependsOn("runFindAndReplace", "runRedactPhrases", "runHighlightMatches",
-              "runMoveText", "runChangeFont", "runAddWatermark", "runRedactTextAndImage")
+    dependsOn("runFindAndReplace", "runHighlightMatches",
+              "runMoveText", "runChangeFont", "runAddWatermark")
+}
+
+tasks.register("runRedactionExamples") {
+    group = "examples"
+    description = "Run all redaction examples"
+    dependsOn("runRedactPhrases", "runRedactTextAndImage", "runRedactImages",
+              "runRedactByPattern", "runRedactFormFields")
 }
 
 tasks.register("runImagesExamples") {
@@ -123,13 +135,14 @@ tasks.register("runImagesExamples") {
 // Master task to run all examples
 tasks.register("runAllExamples") {
     group = "examples"
-    description = "Run ALL examples (quickstart, simple, forms, pages, text, images)"
+    description = "Run ALL examples (quickstart, simple, forms, pages, text, images, redaction)"
     dependsOn(
         "runQuickstartExamples",
         "runSimpleExamples",
         "runFormsExamples",
         "runPagesExamples",
         "runTextExamples",
-        "runImagesExamples"
+        "runImagesExamples",
+        "runRedactionExamples"
     )
 }

@@ -1,4 +1,4 @@
-package com.tfc.pdf.pdfdancer.examples.text;
+package com.tfc.pdf.pdfdancer.examples.redaction;
 
 import com.pdfdancer.client.rest.PDFDancer;
 import com.pdfdancer.client.rest.TextParagraphReference;
@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Working with Text 02 — Redact paragraphs containing forbidden phrases.
+ * Redaction 01 — Redact paragraphs containing forbidden phrases.
  */
 public final class RedactPhrases {
     private static final String SHOWCASE_PATH = "src/main/resources/Showcase.pdf";
-    private static final String OUTPUT_PATH = "output/working-with-text/redacted.pdf";
+    private static final String OUTPUT_PATH = "output/redaction/redacted_phrases.pdf";
     private static final String[] TARGET_PHRASES = {"replaced", "pdfdancer.com"};
 
     public static void main(String[] args) {

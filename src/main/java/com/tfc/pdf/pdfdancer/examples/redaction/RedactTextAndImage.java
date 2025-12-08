@@ -1,4 +1,4 @@
-package com.tfc.pdf.pdfdancer.examples.text;
+package com.tfc.pdf.pdfdancer.examples.redaction;
 
 import com.pdfdancer.client.rest.ImageReference;
 import com.pdfdancer.client.rest.PDFDancer;
@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Working with Text 03 — Redact text containing specific phrases and images on a page.
+ * Redaction 02 — Redact text containing specific phrases and images on a page.
  */
 public final class RedactTextAndImage {
     private static final String SHOWCASE_PATH = "src/main/resources/Showcase.pdf";
-    private static final String OUTPUT_PATH = "output/working-with-text/redacted_text_and_image.pdf";
+    private static final String OUTPUT_PATH = "output/redaction/redacted_text_and_image.pdf";
     private static final String[] TARGET_PHRASES = {"Monospace", "Underlined"};
     private static final int IMAGE_PAGE_NUMBER = 3;
 
