@@ -1,7 +1,7 @@
 package com.tfc.pdf.pdfdancer.examples.forms;
 
-import com.pdfdancer.client.rest.PDFDancer;
 import com.pdfdancer.client.rest.FormFieldReference;
+import com.pdfdancer.client.rest.PDFDancer;
 
 import java.io.File;
 import java.util.List;
@@ -25,12 +25,14 @@ public final class ClearFields {
         PDFDancer pdf = PDFDancer.createSession(pdfPath);
         List<FormFieldReference> fields = pdf.selectFormFields();
         for (FormFieldReference field : fields) {
+            if (field.isButton()) {
+                continue;
+            }
             // Clear all fields to empty string (or "Off" for checkboxes)
-            try {
-                field.setValue("");
-            } catch (Exception e) {
-                // For checkboxes, try "Off"
+            if (field.isCheckBox()) {
                 field.setValue("Off");
+            } else {
+                field.setValue("");
             }
         }
 
