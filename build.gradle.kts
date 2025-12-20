@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.pdfdancer.client:pdfdancer-client-java:0.2.2")
+    implementation("com.pdfdancer.client:pdfdancer-client-java:0.2.3")
     runtimeOnly("ch.qos.logback:logback-classic:1.5.13")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
 }
@@ -86,6 +86,12 @@ createExampleTask("runRedactFormFields", "com.tfc.pdf.pdfdancer.examples.redacti
 createExampleTask("runListImages", "com.tfc.pdf.pdfdancer.examples.images.ListImages", "Run ListImages example")
 createExampleTask("runMoveImage", "com.tfc.pdf.pdfdancer.examples.images.MoveImage", "Run MoveImage example")
 createExampleTask("runDeleteImages", "com.tfc.pdf.pdfdancer.examples.images.DeleteImages", "Run DeleteImages example")
+createExampleTask("runScaleImage", "com.tfc.pdf.pdfdancer.examples.images.ScaleImage", "Run ScaleImage example")
+createExampleTask("runRotateImage", "com.tfc.pdf.pdfdancer.examples.images.RotateImage", "Run RotateImage example")
+createExampleTask("runCropImage", "com.tfc.pdf.pdfdancer.examples.images.CropImage", "Run CropImage example")
+createExampleTask("runSetImageOpacity", "com.tfc.pdf.pdfdancer.examples.images.SetImageOpacity", "Run SetImageOpacity example")
+createExampleTask("runFlipImage", "com.tfc.pdf.pdfdancer.examples.images.FlipImage", "Run FlipImage example")
+createExampleTask("runReplaceImage", "com.tfc.pdf.pdfdancer.examples.images.ReplaceImage", "Run ReplaceImage example")
 
 // Grouped tasks
 tasks.register("runQuickstartExamples") {
@@ -129,7 +135,9 @@ tasks.register("runRedactionExamples") {
 tasks.register("runImagesExamples") {
     group = "examples"
     description = "Run all working with images examples"
-    dependsOn("runListImages", "runMoveImage", "runDeleteImages")
+    dependsOn("runListImages", "runMoveImage", "runDeleteImages",
+              "runScaleImage", "runRotateImage", "runCropImage",
+              "runSetImageOpacity", "runFlipImage", "runReplaceImage")
 }
 
 // Master task to run all examples

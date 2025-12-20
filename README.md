@@ -68,7 +68,7 @@ java -cp build/libs/* com.tfc.pdf.pdfdancer.examples.simple.MovePage \
 
 ```kotlin
 dependencies {
-    implementation("com.tfc.pdf.pdfdancer.api:pdfdancer-api-client:0.1.1")
+    implementation("com.tfc.pdf.pdfdancer.api:pdfdancer-api-client:0.2.3")
 }
 ```
 
@@ -78,7 +78,7 @@ dependencies {
 <dependency>
     <groupId>com.tfc.pdf.pdfdancer.api</groupId>
     <artifactId>pdfdancer-api-client</artifactId>
-    <version>0.1.1</version>
+    <version>0.2.3</version>
 </dependency>
 ```
 
