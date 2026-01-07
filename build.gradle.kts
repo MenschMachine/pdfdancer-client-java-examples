@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.pdfdancer.client:pdfdancer-client-java:0.2.3")
+    implementation("com.pdfdancer.client:pdfdancer-client-java:0.2.4")
     runtimeOnly("ch.qos.logback:logback-classic:1.5.13")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
 }
@@ -93,6 +93,14 @@ createExampleTask("runSetImageOpacity", "com.tfc.pdf.pdfdancer.examples.images.S
 createExampleTask("runFlipImage", "com.tfc.pdf.pdfdancer.examples.images.FlipImage", "Run FlipImage example")
 createExampleTask("runReplaceImage", "com.tfc.pdf.pdfdancer.examples.images.ReplaceImage", "Run ReplaceImage example")
 
+// Working with templates examples
+createExampleTask("runCreateTemplatePDF", "com.tfc.pdf.pdfdancer.examples.templates.CreateTemplatePDF", "Create sample template PDF")
+createExampleTask("runFillTemplate", "com.tfc.pdf.pdfdancer.examples.templates.FillTemplate", "Run FillTemplate example")
+createExampleTask("runFillTemplateByPage", "com.tfc.pdf.pdfdancer.examples.templates.FillTemplateByPage", "Run FillTemplateByPage example")
+createExampleTask("runTemplateWithReflow", "com.tfc.pdf.pdfdancer.examples.templates.TemplateWithReflow", "Run TemplateWithReflow example")
+createExampleTask("runTemplateWithFormatting", "com.tfc.pdf.pdfdancer.examples.templates.TemplateWithFormatting", "Run TemplateWithFormatting example")
+createExampleTask("runMailMerge", "com.tfc.pdf.pdfdancer.examples.templates.MailMerge", "Run MailMerge example")
+
 // Grouped tasks
 tasks.register("runQuickstartExamples") {
     group = "examples"
@@ -140,10 +148,17 @@ tasks.register("runImagesExamples") {
               "runSetImageOpacity", "runFlipImage", "runReplaceImage")
 }
 
+tasks.register("runTemplatesExamples") {
+    group = "examples"
+    description = "Run all working with templates examples"
+    dependsOn("runCreateTemplatePDF", "runFillTemplate", "runFillTemplateByPage",
+              "runTemplateWithReflow", "runTemplateWithFormatting", "runMailMerge")
+}
+
 // Master task to run all examples
 tasks.register("runAllExamples") {
     group = "examples"
-    description = "Run ALL examples (quickstart, simple, forms, pages, text, images, redaction)"
+    description = "Run ALL examples (quickstart, simple, forms, pages, text, images, redaction, templates)"
     dependsOn(
         "runQuickstartExamples",
         "runSimpleExamples",
@@ -151,6 +166,7 @@ tasks.register("runAllExamples") {
         "runPagesExamples",
         "runTextExamples",
         "runImagesExamples",
-        "runRedactionExamples"
+        "runRedactionExamples",
+        "runTemplatesExamples"
     )
 }
