@@ -2,8 +2,6 @@ package com.tfc.pdf.pdfdancer.examples.templates;
 
 import com.pdfdancer.client.rest.PDFDancer;
 import com.pdfdancer.common.model.ReflowPreset;
-import com.pdfdancer.common.request.TemplateReplacement;
-import com.pdfdancer.common.request.TemplateReplaceRequest;
 
 import java.io.File;
 
@@ -39,13 +37,12 @@ public final class TemplateWithReflow {
 
         // Fill placeholders with longer replacement text
         // Using BEST_EFFORT reflow to handle varying text lengths
-        pdf.applyReplacements(TemplateReplaceRequest.builder()
-                .addReplacement(new TemplateReplacement("{{RECIPIENT_NAME}}", "Dr. Alexander Christopher Wellington III", null, null))
-                .addReplacement(new TemplateReplacement("{{COURSE_NAME}}", "Introduction to Machine Learning and Artificial Intelligence", null, null))
-                .addReplacement(new TemplateReplacement("{{DATE}}", "January 7, 2026", null, null))
-                .addReplacement(new TemplateReplacement("{{ISSUER_NAME}}", "PDFDancer Academy of Excellence", null, null))
-                .reflowPreset(ReflowPreset.BEST_EFFORT)
-                .build());
+        pdf.replace("{{RECIPIENT_NAME}}", "Dr. Alexander Christopher Wellington III")
+                .replace("{{COURSE_NAME}}", "Introduction to Machine Learning and Artificial Intelligence")
+                .replace("{{DATE}}", "January 7, 2026")
+                .replace("{{ISSUER_NAME}}", "PDFDancer Academy of Excellence")
+                .withReflow(ReflowPreset.BEST_EFFORT)
+                .apply();
 
         pdf.save(outputPath);
         System.out.println("Filled template with reflow and saved to " + outputPath);

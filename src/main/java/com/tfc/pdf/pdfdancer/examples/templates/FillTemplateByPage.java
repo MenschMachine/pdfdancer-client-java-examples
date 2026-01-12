@@ -1,8 +1,6 @@
 package com.tfc.pdf.pdfdancer.examples.templates;
 
 import com.pdfdancer.client.rest.PDFDancer;
-import com.pdfdancer.common.request.TemplateReplacement;
-import com.pdfdancer.common.request.TemplateReplaceRequest;
 
 import java.io.File;
 
@@ -31,14 +29,12 @@ public final class FillTemplateByPage {
 
         PDFDancer pdf = PDFDancer.createSession(templatePath);
 
-        // Fill placeholders on page 1 only (pageIndex is 0-based)
-        pdf.applyReplacements(TemplateReplaceRequest.builder()
-                .addReplacement(new TemplateReplacement("{{RECIPIENT_NAME}}", "Alice Johnson", null, null))
-                .addReplacement(new TemplateReplacement("{{COURSE_NAME}}", "Web Development Fundamentals", null, null))
-                .addReplacement(new TemplateReplacement("{{DATE}}", "January 7, 2026", null, null))
-                .addReplacement(new TemplateReplacement("{{ISSUER_NAME}}", "PDFDancer Academy", null, null))
-                .pageIndex(0)
-                .build());
+        // Fill placeholders on page 1 only (1-indexed)
+        pdf.page(1).replace("{{RECIPIENT_NAME}}", "Alice Johnson")
+                .replace("{{COURSE_NAME}}", "Web Development Fundamentals")
+                .replace("{{DATE}}", "January 7, 2026")
+                .replace("{{ISSUER_NAME}}", "PDFDancer Academy")
+                .apply();
 
         pdf.save(outputPath);
         System.out.println("Filled page-specific placeholders and saved to " + outputPath);

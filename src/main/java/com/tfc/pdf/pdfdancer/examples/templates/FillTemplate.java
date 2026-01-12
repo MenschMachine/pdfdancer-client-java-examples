@@ -1,8 +1,6 @@
 package com.tfc.pdf.pdfdancer.examples.templates;
 
 import com.pdfdancer.client.rest.PDFDancer;
-import com.pdfdancer.common.request.TemplateReplacement;
-import com.pdfdancer.common.request.TemplateReplaceRequest;
 
 import java.io.File;
 
@@ -30,13 +28,12 @@ public final class FillTemplate {
 
         PDFDancer pdf = PDFDancer.createSession(templatePath);
 
-        // Fill all placeholders in the document
-        pdf.applyReplacements(TemplateReplaceRequest.builder()
-                .addReplacement(new TemplateReplacement("{{RECIPIENT_NAME}}", "John Smith", null, null))
-                .addReplacement(new TemplateReplacement("{{COURSE_NAME}}", "Advanced Java Programming", null, null))
-                .addReplacement(new TemplateReplacement("{{DATE}}", "January 7, 2026", null, null))
-                .addReplacement(new TemplateReplacement("{{ISSUER_NAME}}", "PDFDancer Academy", null, null))
-                .build());
+        // Fill all placeholders in the document using fluent API
+        pdf.replace("{{RECIPIENT_NAME}}", "John Smith")
+                .replace("{{COURSE_NAME}}", "Advanced Java Programming")
+                .replace("{{DATE}}", "January 7, 2026")
+                .replace("{{ISSUER_NAME}}", "PDFDancer Academy")
+                .apply();
 
         pdf.save(outputPath);
         System.out.println("Filled template and saved to " + outputPath);
