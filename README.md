@@ -4,6 +4,8 @@
 
 # PDFDancer Client Java Examples
 
+## PDF used to be read-only. We fixed that.
+
 Edit text in real-world PDFs — even ones you didn't create — from Java. This repository provides small, working examples of the [pdfdancer-api-client](https://central.sonatype.com/artifact/com.tfc.pdf.pdfdancer.api/pdfdancer-api-client), each focused on a single task.
 
 ## Prerequisites
@@ -104,9 +106,9 @@ pdf.movePage(0, 1);      // Move pages
 pdf.save("output.pdf");
 ```
 
-## Helpful Links
+## Helpful links
 
-- API Docs: https://docs.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-java-examples
-- Maven Central: https://central.sonatype.com/artifact/com.tfc.pdf.pdfdancer.api/pdfdancer-api-client
-- PDFDancer: https://www.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-java-examples
-- Issues: https://github.com/MenschMachine/pdfdancer
+- [API documentation](https://docs.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-java-examples)
+- [Product overview](https://www.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-java-examples)
+- [Maven Central](https://central.sonatype.com/artifact/com.tfc.pdf.pdfdancer.api/pdfdancer-api-client)
+- [Issue tracker](https://github.com/MenschMachine/pdfdancer)
