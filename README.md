@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src/main/resources/logo.png" alt="PDFDancer logo" width="80" />
+  <img src="src/main/resources/logo-silver-60h.webp" alt="PDFDancer logo" height="60" />
 </p>
 
 # PDFDancer Client Java Examples
@@ -106,7 +106,7 @@ pdf.save("output.pdf");
 
 ## Helpful Links
 
-- API Docs: https://docs.pdfdancer.com
+- API Docs: https://docs.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-java-examples
 - Maven Central: https://central.sonatype.com/artifact/com.tfc.pdf.pdfdancer.api/pdfdancer-api-client
-- PDFDancer: https://www.pdfdancer.com
+- PDFDancer: https://www.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-java-examples
 - Issues: https://github.com/MenschMachine/pdfdancer
