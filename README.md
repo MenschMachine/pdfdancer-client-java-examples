@@ -70,7 +70,7 @@ java -cp build/libs/* com.tfc.pdf.pdfdancer.examples.simple.MovePage \
 
 ```kotlin
 dependencies {
-    implementation("com.tfc.pdf.pdfdancer.api:pdfdancer-api-client:0.2.3")
+    implementation("com.pdfdancer.client:pdfdancer-client-java:0.2.5")
 }
 ```
 
@@ -78,9 +78,9 @@ dependencies {
 
 ```xml
 <dependency>
-    <groupId>com.tfc.pdf.pdfdancer.api</groupId>
-    <artifactId>pdfdancer-api-client</artifactId>
-    <version>0.2.3</version>
+    <groupId>com.pdfdancer.client</groupId>
+    <artifactId>pdfdancer-client-java</artifactId>
+    <version>0.2.5</version>
 </dependency>
 ```
 
@@ -110,5 +110,5 @@ pdf.save("output.pdf");
 
 - [API documentation](https://docs.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-java-examples)
 - [Product overview](https://www.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-java-examples)
-- [Maven Central](https://central.sonatype.com/artifact/com.tfc.pdf.pdfdancer.api/pdfdancer-api-client)
+- [Maven Central](https://central.sonatype.com/artifact/com.pdfdancer.client/pdfdancer-client-java)
 - [Issue tracker](https://github.com/MenschMachine/pdfdancer)
