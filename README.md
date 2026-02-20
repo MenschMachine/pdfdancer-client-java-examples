@@ -111,4 +111,6 @@ pdf.save("output.pdf");
 - [API documentation](https://docs.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-java-examples)
 - [Product overview](https://www.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-java-examples)
 - [Maven Central](https://central.sonatype.com/artifact/com.pdfdancer.client/pdfdancer-client-java)
+- [Changelog](https://www.pdfdancer.com/changelog/?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-java-examples)
+- [Status](https://status.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-java-examples)
 - [Issue tracker](https://github.com/MenschMachine/pdfdancer)
