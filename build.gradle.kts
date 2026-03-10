@@ -9,10 +9,11 @@ version = "0.1.0-SNAPSHOT"
 repositories {
     mavenLocal()
     mavenCentral()
+    maven("https://jitpack.io")
 }
 
 dependencies {
-    implementation("com.pdfdancer.client:pdfdancer-client-java:0.2.13")
+    implementation("com.pdfdancer.client:pdfdancer-client-java:DEV")
     runtimeOnly("ch.qos.logback:logback-classic:1.5.13")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
 }
@@ -99,6 +100,7 @@ createExampleTask("runGroupAndMovePaths", "com.tfc.pdf.pdfdancer.examples.paths.
 createExampleTask("runScalePathGroup", "com.tfc.pdf.pdfdancer.examples.paths.ScalePathGroup", "Run ScalePathGroup example")
 createExampleTask("runRotatePathGroup", "com.tfc.pdf.pdfdancer.examples.paths.RotatePathGroup", "Run RotatePathGroup example")
 createExampleTask("runRemovePathGroup", "com.tfc.pdf.pdfdancer.examples.paths.RemovePathGroup", "Run RemovePathGroup example")
+createExampleTask("runClearPathGroupClipping", "com.tfc.pdf.pdfdancer.examples.paths.ClearPathGroupClipping", "Run ClearPathGroupClipping example")
 
 // Working with templates examples
 createExampleTask("runCreateTemplatePDF", "com.tfc.pdf.pdfdancer.examples.templates.CreateTemplatePDF", "Create sample template PDF")
@@ -159,7 +161,7 @@ tasks.register("runPathsExamples") {
     group = "examples"
     description = "Run all working with paths examples"
     dependsOn("runListPaths", "runGroupAndMovePaths", "runScalePathGroup",
-              "runRotatePathGroup", "runRemovePathGroup")
+              "runRotatePathGroup", "runRemovePathGroup", "runClearPathGroupClipping")
 }
 
 tasks.register("runTemplatesExamples") {

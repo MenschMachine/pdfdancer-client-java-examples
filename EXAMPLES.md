@@ -66,6 +66,17 @@ You can run examples individually, by category, or all at once using Gradle task
 - MoveImage - Move images to new coordinates
 - DeleteImages - Remove images from pages
 
+#### Working with Paths
+```bash
+./gradlew runPathsExamples
+```
+- ListPaths - List vector paths on a page
+- GroupAndMovePaths - Group paths and move them together
+- ScalePathGroup - Scale a grouped set of paths
+- RotatePathGroup - Rotate a grouped set of paths
+- RemovePathGroup - Delete a grouped set of paths
+- ClearPathGroupClipping - Remove a path group's clipping to reveal hidden vector content
+
 ### Run Individual Examples
 
 You can also run specific examples:
@@ -74,6 +85,7 @@ You can also run specific examples:
 ./gradlew runInspectDocument
 ./gradlew runFillFields
 ./gradlew runAddWatermark
+./gradlew runClearPathGroupClipping
 # ... etc
 ```
 
