@@ -1,9 +1,0 @@
-Appended the repo-specific implementation section to [docs/capabilities/CLEAR_CLIPPING.md](/private/var/folders/cr/4kbt5vt168zbpw3tt9h9lpvc0000gn/T/propagate-pdfdancer-client-java-examples-wocbA9/docs/capabilities/CLEAR_CLIPPING.md#L111). It covers the added `ClearPathGroupClipping` example, the clipping fixture, the Gradle task/build wiring, the `EXAMPLES.md` update, and the fact that this repo demonstrates the capability through grouped-path handling only.
-
-I also recorded the missing context-file issue for this doc propagation run in [.propagate-problems.md](/private/var/folders/cr/4kbt5vt168zbpw3tt9h9lpvc0000gn/T/propagate-pdfdancer-client-java-examples-wocbA9/.propagate-problems.md#L2).
-
-Verification passed with:
-```bash
-PDFDANCER_BASE_URL=http://localhost:18080 PDFDANCER_API_TOKEN=42 ./gradlew runClearPathGroupClipping
-```
-That completed successfully and saved `output/working-with-paths/cleared_group_clipping.pdf`.
