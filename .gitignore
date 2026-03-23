@@ -13,3 +13,5 @@ out/
 .aider*
 /output
 .env
+/.propagate*md
+/.last-message.txt
