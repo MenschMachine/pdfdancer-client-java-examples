@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.pdfdancer.client:pdfdancer-client-java:DEV")
+    implementation("com.pdfdancer.client:pdfdancer-client-java:2.0.14")
     runtimeOnly("ch.qos.logback:logback-classic:1.5.13")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
 }
