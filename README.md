@@ -4,64 +4,90 @@
 
 # PDFDancer Client Java Examples
 
-## PDF used to be read-only. We fixed that.
-
-Edit text in real-world PDFs — even ones you didn't create — from Java. This repository provides small, working examples of the [pdfdancer-api-client](https://central.sonatype.com/artifact/com.tfc.pdf.pdfdancer.api/pdfdancer-api-client), each focused on a single task.
+Small Java programs demonstrating the PDFDancer v3 SDK for editing real-world PDFs.
 
 ## Prerequisites
 
-- Java 11+ (the default toolchain is Java 17)
-- A PDFDancer API token (`PDFDANCER_API_TOKEN`)
-- Gradle (or use the included Gradle wrapper)
+- Java 11 or newer
+- The included Gradle wrapper
+- Network access to the PDFDancer API
+- An API token is optional for these examples; the SDK uses an anonymous session when no token is supplied. Set `PDFDANCER_API_TOKEN` when authenticated requests are required.
 
-## Getting Started
+## Quick start
 
-```bash
-# Set your API token
-export PDFDANCER_API_TOKEN=your-token-here
-
-# Build the project (defaults to Java 17 toolchain)
-./gradlew build
-
-# Or specify a Java version
-export JAVA_VERSION=17
-./gradlew build
-
-# Run an example
-./gradlew run --args="src/main/resources/Showcase.pdf"
-```
-
-## Available Examples
-
-All examples are in `src/main/java/com/tfc/pdf/pdfdancer/examples/simple/`:
-
-### AddPage.java
-Add a blank page to a PDF.
+The repository defaults to the published `3.0.0` SDK:
 
 ```bash
-java -cp build/libs/* com.tfc.pdf.pdfdancer.examples.simple.AddPage \
-  src/main/resources/Showcase.pdf output/with_page.pdf
+./gradlew clean build
+./gradlew runSimpleAddPage
 ```
 
-### MovePage.java
-Reorder pages in a PDF (moves page 0 to position 2).
+If you are developing against the locally published release-candidate artifact, opt into `DEV` explicitly:
 
 ```bash
-java -cp build/libs/* com.tfc.pdf.pdfdancer.examples.simple.MovePage \
-  src/main/resources/Showcase.pdf output/reordered.pdf
+./gradlew -PpdfdancerSdkVersion=DEV clean build
+./gradlew -PpdfdancerSdkVersion=DEV runSimpleAddPage
 ```
 
-## Running from Your IDE
+The simple examples accept an optional input and output path:
 
-1. Open the project in IntelliJ IDEA or your preferred IDE
-2. Set the `PDFDANCER_API_TOKEN` environment variable in your run configuration
-3. Run any of the example classes directly
+```bash
+./gradlew runSimpleAddPage \
+  --args="src/main/resources/Showcase.pdf output/with_new_page.pdf"
+```
 
-## Adding PDFDancer to Your Project
+To run the application smoke example, which reads the document and saves an unmodified copy:
+
+```bash
+./gradlew run \
+  --args="src/main/resources/Showcase.pdf"
+```
+
+The `DEV` artifact must be installed in your local Maven repository. CI and release validation use the published SDK explicitly:
+
+```bash
+./gradlew -PpdfdancerSdkVersion=3.0.0 clean build
+./gradlew -PpdfdancerSdkVersion=3.0.0 runAllExamples
+```
+
+## Example tasks
+
+List all available tasks with:
+
+```bash
+./gradlew tasks --group examples
+```
+
+The category tasks are:
+
+| Category | Gradle task | Coverage |
+| --- | --- | --- |
+| Simple | `runSimpleExamples` | Add and move pages |
+| Forms | `runFormsExamples` | List, fill, check, and clear fields |
+| Pages | `runPagesExamples` | Reorder, extract, delete, and add pages |
+| Images | `runImagesExamples` | List, move, delete, scale, rotate, crop, flip, replace, and set opacity |
+| Paths | `runPathsExamples` | List, group, move, scale, rotate, remove, and clear clipping |
+| All | `runAllExamples` | Every SDK-backed example |
+
+Text and capability examples have individual tasks, including `runReplaceTextUsingSelector`, `runStyleTextUsingSelector`, `runCreatePagesAndDrawingObjects`, and `runRegexReplaceAndStyleText`.
+
+Every example uses a fixture from `src/main/resources/` and writes generated PDFs below `output/`. The complete catalog and output paths are in [EXAMPLES.md](EXAMPLES.md).
+
+## Running from an IDE
+
+Import the project as a Gradle project and run an example class or Gradle task. Set `PDFDANCER_API_TOKEN` in the run configuration only when authenticated requests are needed. Most examples use their checked-in fixture and do not accept command-line arguments.
+
+## Using the SDK in another project
+
+The published v3 dependency is:
 
 ### Gradle
 
 ```kotlin
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     implementation("com.pdfdancer.client:pdfdancer-client-java:3.0.0")
 }
@@ -77,27 +103,35 @@ dependencies {
 </dependency>
 ```
 
-## Basic Usage Pattern
+## Basic usage
 
 ```java
-import com.tfc.pdf.pdfdancer.api.client.rest.PDFDancer;
+import com.pdfdancer.client.rest.PDFDancer;
 import java.io.File;
 
-// 1. Get your API token
 String token = System.getenv("PDFDANCER_API_TOKEN");
+File input = new File("document.pdf");
 
-// 2. Open a PDF
-PDFDancer pdf = PDFDancer.createSession(token, new File("document.pdf"));
+PDFDancer pdf = token == null || token.isBlank()
+        ? PDFDancer.createSession(input)
+        : PDFDancer.createSession(token, input);
 
-// 3. Perform operations
-pdf.selectParagraphs();  // Get all paragraphs
-pdf.selectImages();       // Get all images
-pdf.addPage();           // Add a blank page
-pdf.movePage(0, 1);      // Move pages
-
-// 4. Save the result
+pdf.getPages();
+pdf.selectImages();
+pdf.addPage();
+pdf.movePage(0, 1);
 pdf.save("output.pdf");
 ```
+
+## Contributing and validation
+
+Before submitting changes, run:
+
+```bash
+./gradlew -PpdfdancerSdkVersion=DEV clean build verifyExampleCatalog
+```
+
+CI runs the same checks and the complete example set against SDK `3.0.0`.
 
 ## Helpful links
 

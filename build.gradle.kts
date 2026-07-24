@@ -13,7 +13,8 @@ repositories {
 }
 
 dependencies {
-    implementation("com.pdfdancer.client:pdfdancer-client-java:3.0.0")
+    val pdfdancerSdkVersion = providers.gradleProperty("pdfdancerSdkVersion").orElse("3.0.0")
+    implementation("com.pdfdancer.client:pdfdancer-client-java:${pdfdancerSdkVersion.get()}")
     runtimeOnly("ch.qos.logback:logback-classic:1.5.13")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
 }
@@ -34,8 +35,16 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+// CI, release validation, and ordinary checkouts use the published SDK. Local
+// SDK development can opt into the locally published RC with
+// -PpdfdancerSdkVersion=DEV.
+val registeredExampleClasses = mutableSetOf<String>()
+
 // Helper function to create example runner tasks
 fun createExampleTask(taskName: String, mainClassName: String, description: String) {
+    check(registeredExampleClasses.add(mainClassName)) {
+        "Duplicate example class registered: $mainClassName"
+    }
     tasks.register<JavaExec>(taskName) {
         group = "examples"
         this.description = description
@@ -151,4 +160,36 @@ tasks.register("runAllExamples") {
         "runImagesExamples",
         "runPathsExamples"
     )
+}
+
+tasks.register("verifyExampleCatalog") {
+    group = "verification"
+    description = "Verify that every example class has a Gradle runner task"
+    doLast {
+        val sourceRoot = file("src/main/java/com/tfc/pdf/pdfdancer/examples")
+        val exampleClasses = fileTree(sourceRoot) {
+            include("**/*.java")
+            exclude("ExampleApp.java")
+        }.files.map { sourceFile ->
+            val relativePath = sourceFile.relativeTo(sourceRoot).invariantSeparatorsPath
+            val className = relativePath.removeSuffix(".java").replace('/', '.')
+            "com.tfc.pdf.pdfdancer.examples.$className"
+        }.toSet()
+
+        val missingTasks = exampleClasses - registeredExampleClasses
+        val staleTasks = registeredExampleClasses - exampleClasses
+        check(missingTasks.isEmpty() && staleTasks.isEmpty()) {
+            buildString {
+                append("Example catalog mismatch.")
+                if (missingTasks.isNotEmpty()) append(" Missing tasks for: $missingTasks.")
+                if (staleTasks.isNotEmpty()) append(" Stale task registrations: $staleTasks.")
+            }
+        }
+
+        println("Verified ${exampleClasses.size} example classes and ${registeredExampleClasses.size} runner registrations.")
+    }
+}
+
+tasks.named("check") {
+    dependsOn("verifyExampleCatalog")
 }
