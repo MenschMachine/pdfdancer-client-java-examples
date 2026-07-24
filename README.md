@@ -10,7 +10,7 @@ Edit text in real-world PDFs — even ones you didn't create — from Java. This
 
 ## Prerequisites
 
-- Java 11+
+- Java 11+ (the default toolchain is Java 17)
 - A PDFDancer API token (`PDFDANCER_API_TOKEN`)
 - Gradle (or use the included Gradle wrapper)
 
@@ -20,7 +20,7 @@ Edit text in real-world PDFs — even ones you didn't create — from Java. This
 # Set your API token
 export PDFDANCER_API_TOKEN=your-token-here
 
-# Build the project (defaults to Java 11 toolchain)
+# Build the project (defaults to Java 17 toolchain)
 ./gradlew build
 
 # Or specify a Java version
@@ -34,13 +34,6 @@ export JAVA_VERSION=17
 ## Available Examples
 
 All examples are in `src/main/java/com/tfc/pdf/pdfdancer/examples/simple/`:
-
-### InspectPDF.java
-Inspect a PDF's basic structure - count pages, paragraphs, images, and form fields.
-
-```bash
-java -cp build/libs/* com.tfc.pdf.pdfdancer.examples.simple.InspectPDF src/main/resources/Showcase.pdf
-```
 
 ### AddPage.java
 Add a blank page to a PDF.
@@ -70,7 +63,7 @@ java -cp build/libs/* com.tfc.pdf.pdfdancer.examples.simple.MovePage \
 
 ```kotlin
 dependencies {
-    implementation("com.pdfdancer.client:pdfdancer-client-java:0.2.5")
+    implementation("com.pdfdancer.client:pdfdancer-client-java:3.0.0")
 }
 ```
 
@@ -80,7 +73,7 @@ dependencies {
 <dependency>
     <groupId>com.pdfdancer.client</groupId>
     <artifactId>pdfdancer-client-java</artifactId>
-    <version>0.2.5</version>
+    <version>3.0.0</version>
 </dependency>
 ```
 
