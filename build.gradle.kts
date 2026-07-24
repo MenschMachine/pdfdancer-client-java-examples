@@ -13,14 +13,14 @@ repositories {
 }
 
 dependencies {
-    implementation("com.pdfdancer.client:pdfdancer-client-java:0.2.14")
+    implementation("com.pdfdancer.client:pdfdancer-client-java:3.0.0")
     runtimeOnly("ch.qos.logback:logback-classic:1.5.13")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
 }
 
 java {
     // Use Java version from environment or default to 11
-    val javaVersion = System.getenv("JAVA_VERSION")?.toIntOrNull() ?: 11
+    val javaVersion = System.getenv("JAVA_VERSION")?.toIntOrNull() ?: 17
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(javaVersion))
     }
@@ -48,12 +48,7 @@ fun createExampleTask(taskName: String, mainClassName: String, description: Stri
     }
 }
 
-// Quickstart examples
-createExampleTask("runInspectDocument", "com.tfc.pdf.pdfdancer.examples.quickstart.InspectDocument", "Run InspectDocument example")
-createExampleTask("runExtractText", "com.tfc.pdf.pdfdancer.examples.quickstart.ExtractText", "Run ExtractText example")
-
 // Simple examples
-createExampleTask("runSimpleInspectPDF", "com.tfc.pdf.pdfdancer.examples.simple.InspectPDF", "Run simple InspectPDF example")
 createExampleTask("runSimpleAddPage", "com.tfc.pdf.pdfdancer.examples.simple.AddPage", "Run simple AddPage example")
 createExampleTask("runSimpleMovePage", "com.tfc.pdf.pdfdancer.examples.simple.MovePage", "Run simple MovePage example")
 
@@ -69,21 +64,8 @@ createExampleTask("runExtractPages", "com.tfc.pdf.pdfdancer.examples.pages.Extra
 createExampleTask("runDeletePages", "com.tfc.pdf.pdfdancer.examples.pages.DeletePages", "Run DeletePages example")
 createExampleTask("runAddBlankPage", "com.tfc.pdf.pdfdancer.examples.pages.AddBlankPage", "Run AddBlankPage example")
 
-// Working with text examples
-createExampleTask("runFindAndReplace", "com.tfc.pdf.pdfdancer.examples.text.FindAndReplace", "Run FindAndReplace example")
-createExampleTask("runHighlightMatches", "com.tfc.pdf.pdfdancer.examples.text.HighlightMatches", "Run HighlightMatches example")
-createExampleTask("runMoveText", "com.tfc.pdf.pdfdancer.examples.text.MoveText", "Run MoveText example")
-createExampleTask("runChangeFont", "com.tfc.pdf.pdfdancer.examples.text.ChangeFont", "Run ChangeFont example")
-createExampleTask("runAddWatermark", "com.tfc.pdf.pdfdancer.examples.text.AddWatermark", "Run AddWatermark example")
-
-// Redaction examples
-createExampleTask("runRedactPhrases", "com.tfc.pdf.pdfdancer.examples.redaction.RedactPhrases", "Run RedactPhrases example")
-createExampleTask("runRedactTextAndImage", "com.tfc.pdf.pdfdancer.examples.redaction.RedactTextAndImage", "Run RedactTextAndImage example")
-createExampleTask("runRedactImages", "com.tfc.pdf.pdfdancer.examples.redaction.RedactImages", "Run RedactImages example")
-createExampleTask("runRedactByPattern", "com.tfc.pdf.pdfdancer.examples.redaction.RedactByPattern", "Run RedactByPattern example")
-createExampleTask("runRedactFormFields", "com.tfc.pdf.pdfdancer.examples.redaction.RedactFormFields", "Run RedactFormFields example")
-
 // Working with images examples
+createExampleTask("runMoveScaleRotateAndFlipImage", "com.tfc.pdf.pdfdancer.examples.images.MoveScaleRotateAndFlipImage", "Run move, scale, rotate, and flip image example")
 createExampleTask("runListImages", "com.tfc.pdf.pdfdancer.examples.images.ListImages", "Run ListImages example")
 createExampleTask("runMoveImage", "com.tfc.pdf.pdfdancer.examples.images.MoveImage", "Run MoveImage example")
 createExampleTask("runDeleteImages", "com.tfc.pdf.pdfdancer.examples.images.DeleteImages", "Run DeleteImages example")
@@ -95,6 +77,7 @@ createExampleTask("runFlipImage", "com.tfc.pdf.pdfdancer.examples.images.FlipIma
 createExampleTask("runReplaceImage", "com.tfc.pdf.pdfdancer.examples.images.ReplaceImage", "Run ReplaceImage example")
 
 // Working with paths examples
+createExampleTask("runChangePathColorsAndMove", "com.tfc.pdf.pdfdancer.examples.paths.ChangePathColorsAndMove", "Run path color and movement example")
 createExampleTask("runListPaths", "com.tfc.pdf.pdfdancer.examples.paths.ListPaths", "Run ListPaths example")
 createExampleTask("runGroupAndMovePaths", "com.tfc.pdf.pdfdancer.examples.paths.GroupAndMovePaths", "Run GroupAndMovePaths example")
 createExampleTask("runScalePathGroup", "com.tfc.pdf.pdfdancer.examples.paths.ScalePathGroup", "Run ScalePathGroup example")
@@ -102,25 +85,22 @@ createExampleTask("runRotatePathGroup", "com.tfc.pdf.pdfdancer.examples.paths.Ro
 createExampleTask("runRemovePathGroup", "com.tfc.pdf.pdfdancer.examples.paths.RemovePathGroup", "Run RemovePathGroup example")
 createExampleTask("runClearPathGroupClipping", "com.tfc.pdf.pdfdancer.examples.paths.ClearPathGroupClipping", "Run ClearPathGroupClipping example")
 
-// Working with templates examples
-createExampleTask("runCreateTemplatePDF", "com.tfc.pdf.pdfdancer.examples.templates.CreateTemplatePDF", "Create sample template PDF")
-createExampleTask("runFillTemplate", "com.tfc.pdf.pdfdancer.examples.templates.FillTemplate", "Run FillTemplate example")
-createExampleTask("runFillTemplateByPage", "com.tfc.pdf.pdfdancer.examples.templates.FillTemplateByPage", "Run FillTemplateByPage example")
-createExampleTask("runTemplateWithReflow", "com.tfc.pdf.pdfdancer.examples.templates.TemplateWithReflow", "Run TemplateWithReflow example")
-createExampleTask("runTemplateWithFormatting", "com.tfc.pdf.pdfdancer.examples.templates.TemplateWithFormatting", "Run TemplateWithFormatting example")
-createExampleTask("runMailMerge", "com.tfc.pdf.pdfdancer.examples.templates.MailMerge", "Run MailMerge example")
-
 // Grouped tasks
-tasks.register("runQuickstartExamples") {
-    group = "examples"
-    description = "Run all quickstart examples"
-    dependsOn("runInspectDocument", "runExtractText")
-}
+createExampleTask("runReplaceTextUsingSelector", "com.tfc.pdf.pdfdancer.examples.text.ReplaceTextUsingSelector", "Run text replacement using a selector example")
+createExampleTask("runDeleteTextUsingSelector", "com.tfc.pdf.pdfdancer.examples.text.DeleteTextUsingSelector", "Run text deletion using a selector example")
+createExampleTask("runInsertTextAfterMatch", "com.tfc.pdf.pdfdancer.examples.text.InsertTextAfterMatch", "Run text insertion after a match example")
+createExampleTask("runStyleTextUsingSelector", "com.tfc.pdf.pdfdancer.examples.text.StyleTextUsingSelector", "Run text styling using a selector example")
+createExampleTask("runCreatePagesAndDrawingObjects", "com.tfc.pdf.pdfdancer.examples.capabilities.CreatePagesAndDrawingObjects", "Run page and drawing object creation example")
+createExampleTask("runReadSnapshotsAndUseCoordinateSelectors", "com.tfc.pdf.pdfdancer.examples.capabilities.ReadSnapshotsAndUseCoordinateSelectors", "Run snapshots and coordinate selectors example")
+createExampleTask("runFindAndRegisterFonts", "com.tfc.pdf.pdfdancer.examples.capabilities.FindAndRegisterFonts", "Run font lookup and registration example")
+createExampleTask("runFillRegionOfImage", "com.tfc.pdf.pdfdancer.examples.capabilities.FillRegionOfImage", "Run image region fill example")
+createExampleTask("runGroupPathsInRegionAndResize", "com.tfc.pdf.pdfdancer.examples.capabilities.GroupPathsInRegionAndResize", "Run path grouping and resizing example")
+createExampleTask("runRegexReplaceAndStyleText", "com.tfc.pdf.pdfdancer.examples.capabilities.RegexReplaceAndStyleText", "Run regex text replacement and styling example")
 
 tasks.register("runSimpleExamples") {
     group = "examples"
     description = "Run all simple examples"
-    dependsOn("runSimpleInspectPDF", "runSimpleAddPage", "runSimpleMovePage")
+    dependsOn("runSimpleAddPage", "runSimpleMovePage")
 }
 
 tasks.register("runFormsExamples") {
@@ -135,24 +115,10 @@ tasks.register("runPagesExamples") {
     dependsOn("runReorderPages", "runExtractPages", "runDeletePages", "runAddBlankPage")
 }
 
-tasks.register("runTextExamples") {
-    group = "examples"
-    description = "Run all working with text examples"
-    dependsOn("runFindAndReplace", "runHighlightMatches",
-              "runMoveText", "runChangeFont", "runAddWatermark")
-}
-
-tasks.register("runRedactionExamples") {
-    group = "examples"
-    description = "Run all redaction examples"
-    dependsOn("runRedactPhrases", "runRedactTextAndImage", "runRedactImages",
-              "runRedactByPattern", "runRedactFormFields")
-}
-
 tasks.register("runImagesExamples") {
     group = "examples"
     description = "Run all working with images examples"
-    dependsOn("runListImages", "runMoveImage", "runDeleteImages",
+    dependsOn("runMoveScaleRotateAndFlipImage", "runListImages", "runMoveImage", "runDeleteImages",
               "runScaleImage", "runRotateImage", "runCropImage",
               "runSetImageOpacity", "runFlipImage", "runReplaceImage")
 }
@@ -160,30 +126,29 @@ tasks.register("runImagesExamples") {
 tasks.register("runPathsExamples") {
     group = "examples"
     description = "Run all working with paths examples"
-    dependsOn("runListPaths", "runGroupAndMovePaths", "runScalePathGroup",
+    dependsOn("runChangePathColorsAndMove", "runListPaths", "runGroupAndMovePaths", "runScalePathGroup",
               "runRotatePathGroup", "runRemovePathGroup", "runClearPathGroupClipping")
-}
-
-tasks.register("runTemplatesExamples") {
-    group = "examples"
-    description = "Run all working with templates examples"
-    dependsOn("runCreateTemplatePDF", "runFillTemplate", "runFillTemplateByPage",
-              "runTemplateWithReflow", "runTemplateWithFormatting", "runMailMerge")
 }
 
 // Master task to run all examples
 tasks.register("runAllExamples") {
     group = "examples"
-    description = "Run ALL examples (quickstart, simple, forms, pages, text, images, redaction, paths, templates)"
+    description = "Run all examples compatible with the v3 SDK"
     dependsOn(
-        "runQuickstartExamples",
         "runSimpleExamples",
         "runFormsExamples",
         "runPagesExamples",
-        "runTextExamples",
+        "runReplaceTextUsingSelector",
+        "runDeleteTextUsingSelector",
+        "runInsertTextAfterMatch",
+        "runStyleTextUsingSelector",
+        "runCreatePagesAndDrawingObjects",
+        "runReadSnapshotsAndUseCoordinateSelectors",
+        "runFindAndRegisterFonts",
+        "runFillRegionOfImage",
+        "runGroupPathsInRegionAndResize",
+        "runRegexReplaceAndStyleText",
         "runImagesExamples",
-        "runRedactionExamples",
-        "runPathsExamples",
-        "runTemplatesExamples"
+        "runPathsExamples"
     )
 }

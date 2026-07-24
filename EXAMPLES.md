@@ -1,151 +1,24 @@
-# PDFDancer Java Examples
+# PDFDancer Java examples
 
-This project contains comprehensive examples demonstrating how to use the PDFDancer Java SDK.
+The `release/v3` branch contains examples compatible with the current v3 SDK:
 
-## Running Examples
+- `simple/` — add and move pages
+- `forms/` — list and mutate form fields
+- `pages/` — reorder, extract, delete, and add pages
+- `images/` — list, move, delete, scale, rotate, crop, flip, replace, and set opacity
+- `paths/` — list, group, move, scale, rotate, remove, and clear clipping
 
-You can run examples individually, by category, or all at once using Gradle tasks.
+Run the complete compatible set with `./gradlew runAllExamples`.
 
-### Run All Examples
+The API-focused examples are:
 
-```bash
-./gradlew runAllExamples
-```
+- `text/ReplaceTextUsingSelector.java` — replace text selected by literal content
+- `text/DeleteTextUsingSelector.java` — delete text selected by literal content
+- `text/InsertTextAfterMatch.java` — insert text after a matching range
+- `text/StyleTextUsingSelector.java` — style text selected by literal content
+- `images/MoveScaleRotateAndFlipImage.java` — apply several image transformations
+- `paths/ChangePathColorsAndMove.java` — change path colors and move a path
 
-### Run Examples by Category
-
-#### Quickstart Examples
-```bash
-./gradlew runQuickstartExamples
-```
-- InspectDocument - Inspect PDF structure
-- ExtractText - Extract text from PDF
-
-#### Simple Examples
-```bash
-./gradlew runSimpleExamples
-```
-- InspectPDF - Basic PDF inspection
-- AddPage - Add blank pages
-- MovePage - Reorder pages
-
-#### Forms Examples
-```bash
-./gradlew runFormsExamples
-```
-- ListFields - List all form fields
-- FillFields - Fill form fields with values
-- CheckBoxes - Toggle checkboxes
-- ClearFields - Clear all form fields
-
-#### Working with Pages
-```bash
-./gradlew runPagesExamples
-```
-- ReorderPages - Move pages to new positions
-- ExtractPages - Extract first N pages
-- DeletePages - Delete specific pages
-- AddBlankPage - Add blank pages with custom size
-
-#### Working with Text
-```bash
-./gradlew runTextExamples
-```
-- FindAndReplace - Replace text in paragraphs
-- RedactPhrases - Delete paragraphs containing phrases
-- HighlightMatches - Highlight matching text
-- MoveText - Move paragraphs to new coordinates
-- ChangeFont - Apply new fonts to text
-- AddWatermark - Add watermarks to all pages
-
-#### Working with Images
-```bash
-./gradlew runImagesExamples
-```
-- ListImages - List all images and positions
-- MoveImage - Move images to new coordinates
-- DeleteImages - Remove images from pages
-
-#### Working with Paths
-```bash
-./gradlew runPathsExamples
-```
-- ListPaths - List vector paths on a page
-- GroupAndMovePaths - Group paths and move them together
-- ScalePathGroup - Scale a grouped set of paths
-- RotatePathGroup - Rotate a grouped set of paths
-- RemovePathGroup - Delete a grouped set of paths
-- ClearPathGroupClipping - Remove a path group's clipping to reveal hidden vector content
-
-### Run Individual Examples
-
-You can also run specific examples:
-
-```bash
-./gradlew runInspectDocument
-./gradlew runFillFields
-./gradlew runAddWatermark
-./gradlew runClearPathGroupClipping
-# ... etc
-```
-
-## List All Available Tasks
-
-To see all available example tasks:
-
-```bash
-./gradlew tasks --group examples
-```
-
-## Output Files
-
-All examples save their output PDFs to the `output/` directory, organized by category:
-- `output/quickstart/`
-- `output/simple/`
-- `output/working-with-forms/`
-- `output/working-with-pages/`
-- `output/working-with-text/`
-- `output/working-with-images/`
-
-## Requirements
-
-- Java 11 or higher
-- PDFDancer API token (optional - anonymous tokens are used by default)
-
-## Environment Variables
-
-You can optionally set these environment variables:
-
-- `PDFDANCER_API_TOKEN` - Your API token for authenticated requests
-- `PDFDANCER_BASE_URL` - Custom API endpoint (defaults to https://api.pdfdancer.com)
-
-## Example Code Structure
-
-All examples follow this structure:
-```java
-public static void main(String[] args) {
-    runExample(inputFile, outputPath);
-}
-
-public static void runExample(File pdfPath, String outputPath) {
-    PDFDancer pdf = PDFDancer.createSession(pdfPath);
-    // ... PDF operations ...
-    pdf.save(outputPath);
-}
-```
-
-This makes it easy to integrate example code into your own applications.
-
-## GitHub Actions
-
-This repository includes an automated workflow (`.github/workflows/daily-examples.yml`):
-
-- Runs all examples daily at 2 AM UTC
-- Can be manually triggered from GitHub Actions tab
-- Tests on Java 11, 17, 21, and 25 to ensure compatibility
-- Tests all example categories independently
-- Uploads generated PDFs as artifacts (retained for 7 days, Java 21 only)
-- Uses anonymous PDFDancer tokens by default (or `PDFDANCER_API_TOKEN` secret if configured)
-- Points to staging API via `PDFDANCER_BASE_URL=https://api-staging.pdfdancer.com`
-
-The workflow can be triggered manually from the GitHub Actions tab for immediate testing.
+Additional capability coverage is under `capabilities/`: object creation,
+snapshots and coordinate selectors, font lookup/registration, image fill-region,
+path-group variants, and advanced text selectors.

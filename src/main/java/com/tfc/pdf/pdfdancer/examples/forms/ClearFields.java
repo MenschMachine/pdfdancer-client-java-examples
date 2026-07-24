@@ -40,3 +40,4 @@ public final class ClearFields {
         System.out.println("Cleared " + fields.size() + " fields and saved to " + outputPath + ".");
     }
 }
+

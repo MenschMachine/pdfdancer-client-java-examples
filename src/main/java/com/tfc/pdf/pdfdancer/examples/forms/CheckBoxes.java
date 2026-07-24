@@ -38,3 +38,4 @@ public final class CheckBoxes {
         System.out.println("Checked '" + checkboxName + "' and saved to " + outputPath + ".");
     }
 }
+
