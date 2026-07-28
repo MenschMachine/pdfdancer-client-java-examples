@@ -90,7 +90,17 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build project
+        if: runner.os == 'Windows'
+        run: .\gradlew.bat "-PpdfdancerSdkVersion=${{ env.PDFDANCER_SDK_VERSION }}" build verifyExampleCatalog
+
+      - name: Build project (Unix)
+        if: runner.os != 'Windows'
         run: ./gradlew -PpdfdancerSdkVersion=${PDFDANCER_SDK_VERSION} build verifyExampleCatalog
 
       - name: Run All Examples
+        if: runner.os == 'Windows'
+        run: .\gradlew.bat "-PpdfdancerSdkVersion=${{ env.PDFDANCER_SDK_VERSION }}" runAllExamples
+
+      - name: Run All Examples (Unix)
+        if: runner.os != 'Windows'
         run: ./gradlew -PpdfdancerSdkVersion=${PDFDANCER_SDK_VERSION} runAllExamples
