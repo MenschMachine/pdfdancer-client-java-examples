@@ -20,7 +20,7 @@ dependencies {
 }
 
 java {
-    // Use Java version from environment or default to 11
+    // Use Java version from environment or default to 17
     val javaVersion = System.getenv("JAVA_VERSION")?.toIntOrNull() ?: 17
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(javaVersion))

@@ -8,7 +8,7 @@ Small Java programs demonstrating the PDFDancer v3 SDK for editing real-world PD
 
 ## Prerequisites
 
-- Java 11 or newer
+- Java 17 or newer
 - The included Gradle wrapper
 - Network access to the PDFDancer API
 - An API token is optional for these examples; the SDK uses an anonymous session when no token is supplied. Set `PDFDANCER_API_TOKEN` when authenticated requests are required.

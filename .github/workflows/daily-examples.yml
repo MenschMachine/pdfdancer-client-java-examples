@@ -19,8 +19,8 @@ jobs:
       - name: Select random combination
         id: random
         run: |
-          # All possible Java versions
-          JAVA_VERSIONS=("11" "17" "21" "25")
+          # Java 17 is the minimum supported by PDFDancer SDK 3.x.
+          JAVA_VERSIONS=("17" "21" "25")
           # All possible OS (macos-latest removed per remote changes)
           OS_OPTIONS=("ubuntu-latest" "windows-latest")
 
